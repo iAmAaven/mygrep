@@ -1,0 +1,56 @@
+## Visual Studio Code
+.vscode/
+*.code-workspace
+
+## Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+## Precompiled Headers
+*.gch
+*.pch
+
+## Libraries
+*.lib
+*.a
+
+## Shared objects (Linux/Mac)
+*.so
+*.dylib
+
+## Executables
+*.exe
+*.out
+*.app
+
+## Debug files
+*.dSYM/
+*.pdb
+
+## CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+## Build directories
+build/
+Debug/
+Release/
+
+## Other
+*.log
+*.tmp
+*.bak
+*.swp
+*.txt
+
+## Git
+*.orig
+*.rej
+
+## Custom mygrep specific files
+mygrep_output.txt
+mygrep_temp/
