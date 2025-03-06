@@ -15,7 +15,7 @@ bool contains_string(const string& line, const string& search, bool ignore_case)
 
 // Tulostaa ohjelman käyttöohjeet
 void print_usage() {
-    cerr << "Usage: mygrep -o[OPTIONS] <SEARCH TERM> <FILE>" << endl;
+    cerr << "Usage: mygrep <OPTIONAL -o[OPTIONS]> <SEARCH TERM> <FILE>" << endl;
     cerr << "Options:\n  -l  Print line numbers\n  -r  Invert search\n  -i  Ignore case\n  -o  Count occurrences" << endl;
 }
 
@@ -37,9 +37,44 @@ int main(int argc, char* argv[]) {
 
         return EXIT_SUCCESS;
     }
+    else if (argc == 3)
+    {
+        string search_s = argv[1];
+        string file_n = argv[2];
+        string line;
 
+        ifstream file(file_n);
+        if (!file) {
+            cerr << "Could not open file." << endl;
+            return EXIT_FAILURE;
+        }
+
+        try {
+            // Luetaan tiedosto rivi kerrallaan
+            while (getline(file, line)) {
+                bool found = contains_string(line, search_s, true);
+
+                // Tulostetaan osumat
+                if (found) {
+                    cout << line << endl;
+                }
+            }
+        }
+        catch (const exception& e) {
+            cerr << "An exception occurred: " << e.what() << endl;
+            return EXIT_FAILURE;
+        }
+
+        return EXIT_SUCCESS;
+    }
     // Tarkistetaan komentoriviparametrien määrä
-    if (argc != 4) {
+    else if (argc != 4) {
+        print_usage();
+        return EXIT_FAILURE;
+    }
+
+    if (argv[1][0] != '-' || argv[1][1] != 'o')
+    {
         print_usage();
         return EXIT_FAILURE;
     }
